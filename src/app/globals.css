@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Favorit";
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://storage.owndays.com/meller/fonts/Favorit/Favorit-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Favorit";
+  font-weight: 500;
+  font-display: swap;
+  src: url("https://storage.owndays.com/meller/fonts/Favorit/Favorit-Medium.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Favorit";
+  font-weight: 700;
+  font-display: swap;
+  src: url("https://storage.owndays.com/meller/fonts/Favorit/Favorit-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "GT America Trial Cm";
+  font-weight: 700;
+  font-display: swap;
+  src: url("https://storage.owndays.com/meller/fonts/GTAmericaTrial/GTAmericaTrial-CmBd.woff2") format("woff2");
+}
+@font-face {
+  font-family: "GT America Trial Cm";
+  font-weight: 900;
+  font-display: swap;
+  src: url("https://storage.owndays.com/meller/fonts/GTAmericaTrial/GTAmericaTrial-CmBl.woff2") format("woff2");
+}
+@font-face {
+  font-family: "GT America Trial";
+  font-weight: 500;
+  font-display: swap;
+  src: url("https://storage.owndays.com/meller/fonts/GTAmericaTrial/GTAmericaTrial-Md.woff2") format("woff2");
+}
+
+@theme inline {
+  --color-brand: #ff6723;
+  --color-ink: #000000;
+  --font-favorit: "Favorit", var(--font-noto-sans-jp), sans-serif;
+  --font-noto: var(--font-noto-sans-jp), sans-serif;
+  --font-display: "GT America Trial Cm", sans-serif;
+  --font-gt: "GT America Trial", sans-serif;
+}
+
+body {
+  font-family: var(--font-noto-sans-jp), sans-serif;
+  background: #fff;
+  color: var(--color-ink);
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+@keyframes modal-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes modal-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@keyframes modal-panel-mobile {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes modal-panel-mobile-out {
+  from { opacity: 1; transform: none; }
+  to { opacity: 0; transform: translateY(16px); }
+}
+@keyframes modal-panel-desktop {
+  from { transform: translateX(100%); }
+  to { transform: none; }
+}
+@keyframes modal-panel-desktop-out {
+  from { transform: none; }
+  to { transform: translateX(100%); }
+}
+.modal-overlay {
+  animation: modal-fade 250ms ease-out both;
+}
+.modal-panel {
+  animation: modal-panel-mobile 250ms ease-out both;
+}
+[data-state="closed"] .modal-overlay {
+  animation-name: modal-fade-out;
+  animation-timing-function: ease-in;
+}
+[data-state="closed"] .modal-panel {
+  animation-name: modal-panel-mobile-out;
+  animation-timing-function: ease-in;
+}
+@media (min-width: 1024px) {
+  .modal-panel {
+    animation-name: modal-panel-desktop;
+  }
+  [data-state="closed"] .modal-panel {
+    animation-name: modal-panel-desktop-out;
+  }
+}
+.menu-root {
+  animation: modal-fade 250ms ease-out both;
+}
+.menu-root[data-state="closed"] {
+  animation-name: modal-fade-out;
+  animation-timing-function: ease-in;
+}
